@@ -44,36 +44,69 @@ elementForm2.addEventListener('submit', function (event) {
     // Stop page reloading
     event.preventDefault()
 
-    const inputTeam = document.querySelector('select.form-select').value;
+    const inputTeam = parseInt(document.querySelector('select.form-select').value);
 
-    const userNumber = document.getElementById('custom_range').value;
+    const userNumber = parseInt(document.getElementById('custom_range').value);
+    /* userNumber = parseInt(userNumber); */
 
-    console.log(`hai scelto team ${inputTeam}`);
-    console.log(inputTeam);
+    let team;
+
+    if (inputTeam === 1) {
+        team = 'pari'
+    } else {
+        team = 'dispari'
+    }
+
+    console.log(`hai scelto ${team}`);
+    //console.log(inputTeam);
     console.log(`hai scelto il numero ${userNumber}`);
 
     const pcNumber = getRndInteger(1, 5);
 
+    console.log(`il pc ha scelto il numero ${pcNumber}`);
+
     const sum = userNumber + pcNumber;
 
-    const result = isEven(sum);
+    console.log(`Somma ${sum}`);
 
-    if (result && inputTeam === 1) {
+    //const result = isEven(sum);
 
-    } else if () {
-        
-    } else if () {
+/*     if (isEven(sum) === true && inputTeam === 1) {
+        console.log('hai vinto');
+    } else if (isEven(sum) === false && inputTeam === 2) {
+        console.log('hai vinto');
+    } else {
+        console.log('hai perso');
+    } */
+    let stringResult;
 
-    } else if () {
+    if ((isEven(sum) === true && inputTeam === 1) || (isEven(sum) === false && inputTeam === 2)){
+        console.log('hai vinto');
 
+        stringResult = `<span class="text-success fs-4 lead fw-bold">Hai Vinto!</span>`;
+
+    } else {
+        console.log('hai perso');
+
+        stringResult = `<span class="text-danger fs-4 lead fw-bold">Hai perso sry</span>`;
     }
 
+
+
+    const gameResult = `
+    <h3 class="">Il pc ha scelto</h3>
+    <span class=" fs-5 border border-2 rounded-pill d-flex justify-content-center align-items-center px-4">${pcNumber}</span>
+    <span class=" fs-5 border border-1 rounded-pill d-flex justify-content-center align-items-center px-4 bg-info">Somma: ${sum}</span>
+    ${stringResult}
+    `;
+
+    gameResultDiv.innerHTML = gameResult;
 
 })
 
 
 
-
+/* FUNCTIONS HERE */
 
 function isPalindrome(word) {
     let output;
@@ -100,12 +133,6 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-/* function playOddsEvens(userNumber, team) {
-    const pcNumber = getRndInteger(1, 5);
-    const sum = userNumber + pcNumber;
-
-    if (sum % 2 === 0 && )
-} */
 
 function isEven(number) {
     if (number % 2 === 0) {
@@ -115,7 +142,3 @@ function isEven(number) {
     }
 }
 
-
-console.log(isEven(7));
-console.log(isEven(8));
-console.log(isEven(1256));
