@@ -111,7 +111,7 @@ elementForm2.addEventListener('submit', function (event) {
 function isPalindrome(word) {
     let output;
     for (let i = 0; i < word.length; i++){
-        if (word.at(i) !== word.at((word.length - 1) - i)) {
+        if (word.at(i).toLowerCase() !== word.at((word.length - 1) - i).toLowerCase()) {
 
             output = false;
             break;
